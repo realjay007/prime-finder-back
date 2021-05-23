@@ -1,3 +1,11 @@
+# Dependency directory
 node_modules
+
+# IDE
 .vscode
+
+# Built ts files
 dist
+
+# Coverage reports
+coverage
