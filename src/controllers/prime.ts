@@ -4,7 +4,7 @@ import { findNextLowerPrime } from "../lib/prime";
 import { FindLowerRequestSchema, findLowerValidationRules } from "../validators/prime";
 
 const router = Router();
-const validator = createValidator();
+const validator = createValidator({ passError: true });
 
 router.post(
 	"/find-next-lower", validator.body(findLowerValidationRules),
