@@ -1,8 +1,12 @@
 export function isPrime(num: number): boolean {
-	for (let i = 2, stop = Math.sqrt(num); i <= stop; ++i) {
+	if (num < 2) return false;
+	if (num === 2) return true;
+	if (num % 2 === 0) return false;
+
+	for (let i = 3, stop = Math.sqrt(num); i <= stop; i+=2) {
 		if (num % i === 0) return false;
 	}
-	return num > 1;
+	return true;
 }
 
 export function findNextLowerPrime(num: number): number {
