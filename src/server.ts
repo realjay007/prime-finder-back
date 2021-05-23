@@ -12,6 +12,10 @@ if (process.env.NODE_ENV === "development") {
 	app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 		// Ideally should send error to error tracking platform
 		console.error(err);
+		res.status(500).json({
+			status: false,
+			message: 'There was an error processing your request.',
+		});
 	});
 }
 
