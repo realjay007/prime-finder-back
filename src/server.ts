@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "development") {
 		console.error(err);
 		res.status(500).json({
 			status: false,
-			message: 'There was an error processing your request.',
+			message: "There was an error processing your request.",
 		});
 	});
 }
