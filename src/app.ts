@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import { ExpressJoiError } from "express-joi-validation";
 import "express-async-errors"; // Allows express to catch promise rejections as errors
 import router from "./config/router";
 
@@ -18,6 +19,25 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	res.status(404).json({
 		status: false,
 		message: "Resource not found.",
+	});
+});
+
+/**
+ * Error Handler
+ */
+ app.use((err: any|ExpressJoiError, req: Request, res: Response, next: NextFunction) => {
+	if(err && (err as ExpressJoiError).error.isJoi) {
+		const joiError: ExpressJoiError = err;
+		return res.status(400).json({
+			status: false,
+			message: joiError.error.toString(),
+		});
+	}
+	// Ideally should send error to error tracking platform
+	console.error(err);
+	res.status(500).json({
+		status: false,
+		message: "Internal server error",
 	});
 });
 
