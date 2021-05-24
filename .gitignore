@@ -9,3 +9,6 @@ dist
 
 # Coverage reports
 coverage
+
+# Environment variable file
+.env

@@ -1,7 +1,11 @@
+import dotenv from 'dotenv';
 import express, { NextFunction, Request, Response } from "express";
 import { ExpressJoiError } from "express-joi-validation";
 import "express-async-errors"; // Allows express to catch promise rejections as errors
 import router from "./config/router";
+
+// Init dotenv to load environment variables from .env
+dotenv.config();
 
 // Create Express server
 const app = express();
