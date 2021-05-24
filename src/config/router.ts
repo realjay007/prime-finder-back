@@ -10,6 +10,10 @@ router.get("/", (req: Request, res: Response) => {
 	});
 });
 
+router.get("/error", () => {
+	throw new Error("Testing error flow");
+});
+
 router.use("/prime", primeRouter);
 
 export default router;
