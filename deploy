@@ -1,14 +1,16 @@
 #!/bin/bash
 
+# This requires the realjay host to be setup in ssh config
 ssh realjay /bin/bash << EOF
 	cd /projects/prime-finder/backend
+	# Stop application
+	pm2 stop prime-finder
 	# Pull latest branch from repo
 	git pull
 	# Install dependencies
 	npm ci
 	# Build application
 	npm run build
-	# Restart application
-	pm2 stop prime-finder
+	# Start application
 	pm2 start prime-finder
 EOF
