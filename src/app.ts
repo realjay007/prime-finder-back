@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express, { NextFunction, Request, Response } from "express";
 import { ExpressJoiError } from "express-joi-validation";
 import "express-async-errors"; // Allows express to catch promise rejections as errors
+import cors from 'cors';
 import router from "./config/router";
 
 // Init dotenv to load environment variables from .env
@@ -14,6 +15,8 @@ const app = express();
 app.set("port", process.env.PORT || 4000);
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.set("trust proxy", true);
+app.use(cors());
 
 // App routes
 app.use(router);

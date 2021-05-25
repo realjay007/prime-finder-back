@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ssh realjay /bin/bash << EOF
+	cd /projects/prime-finder/backend
+	# Pull latest branch from repo
+	git pull
+	# Install dependencies
+	npm ci
+	# Build application
+	npm run build
+	# Restart application
+	pm2 stop prime-finder
+	pm2 start prime-finder
+EOF
