@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
 import { ExpressJoiError } from "express-joi-validation";
 import "express-async-errors"; // Allows express to catch promise rejections as errors
-import cors from 'cors';
+import cors from "cors";
 import router from "./config/router";
 
 // Init dotenv to load environment variables from .env
@@ -32,7 +32,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 /**
  * Error Handler
  */
- app.use((err: any|ExpressJoiError, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any|ExpressJoiError, req: Request, res: Response, next: NextFunction) => {
 	if(err && (err as ExpressJoiError).error.isJoi) {
 		const joiError: ExpressJoiError = err;
 		return res.status(400).json({
